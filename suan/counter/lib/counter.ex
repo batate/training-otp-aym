@@ -1,15 +1,10 @@
 defmodule Counter do
-  alias Counter.Server
+  alias Counter.GenericServer
 
-  def start(state \\ 42) do
-    Server.start(state)
+  def start(name, state \\ 42) do
+    GenericServer.start_link(name, state)
   end
 
-  def inc(counter) do
-    Server.increment(counter)
-  end
-
-  def state(counter) do
-    Server.state(counter)
-  end
+  defdelegate inc(name), to: GenericServer
+  defdelegate state(name), to: GenericServer
 end
