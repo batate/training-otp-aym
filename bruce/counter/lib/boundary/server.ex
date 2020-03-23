@@ -3,6 +3,20 @@ defmodule Counter.Server do
     spawn fn -> run(initial) end
   end
   
+  def inc(counter) do
+    send counter, :inc
+  end
+  
+  def state(counter) do
+    send counter, {:state, self()}
+    receive do
+      count -> count
+    after
+      5000 ->
+        :error
+    end
+  end
+  
   def run(count) do
     count
     |> listen

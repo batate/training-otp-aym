@@ -1,18 +1,6 @@
 defmodule Counter do
-  @moduledoc """
-  Documentation for Counter.
-  """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Counter.hello()
-      :world
-
-  """
-  def hello do
-    :world
-  end
+  alias Counter.Server
+  def start(count \\ 42), do: Server.start(count)
+  def inc(counter), do: Server.inc(counter)
+  def state(counter), do: Server.state(counter)
 end
