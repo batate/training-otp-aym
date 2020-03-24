@@ -12,6 +12,10 @@ defmodule Mastermind.Game do
   def won?(%{guesses: [answer | _], answer: answer}), do: true
   def won?(_game), do: false
 
+  def lost?(game) do
+    length(game.guesses) == 10 and !won?(game)
+  end
+
   defp random_answer() do
     1..8
     |> Enum.shuffle()
