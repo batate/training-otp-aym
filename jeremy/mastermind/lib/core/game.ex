@@ -15,6 +15,10 @@ defmodule Mastermind.Game do
     %{game | guesses: [guess | game.guesses]}
   end
 
+  def fold(enum, acc, fun) do
+    Enum.reduce(enum, acc, fn item, acc -> fun.(acc, item) end)
+  end
+
   def lost?(game) do
     length(game.guesses) == 10 and !won?(game)
   end
@@ -37,5 +41,4 @@ defmodule Mastermind.Game do
     |> Enum.shuffle()
     |> Enum.take(4)
   end
-
 end
