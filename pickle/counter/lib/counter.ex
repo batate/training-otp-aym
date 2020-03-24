@@ -1,18 +1,15 @@
 defmodule Counter do
-  @moduledoc """
-  Documentation for Counter.
-  """
+  alias Counter.GenericServer
 
-  @doc """
-  Hello world.
+  def start(state \\ 42) do
+    GenericServer.start(state)
+  end
 
-  ## Examples
+  def inc do
+    GenericServer.inc()
+  end
 
-      iex> Counter.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def state do
+    GenericServer.state()
   end
 end
