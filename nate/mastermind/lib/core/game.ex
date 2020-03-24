@@ -9,6 +9,10 @@ defmodule Mastermind.Game do
     %{game | guesses: [guess | game.guesses]}
   end
 
+  def lost?(game) do
+    length(game.guesses) == 10 and !won?(game)
+  end
+
   def won?(%{guesses: [answer | _], answer: answer}), do: true
   def won?(_game), do: false
 

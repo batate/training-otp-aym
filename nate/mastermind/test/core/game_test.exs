@@ -18,8 +18,42 @@ defmodule Mastermind.GameTest do
 
   test "correct guess wins" do
     assert Game.won?(winning_game())
+    assert Game.won?(ten_move_winner())
     refute Game.won?(empty_game())
     refute Game.won?(single_nonwinning_move())
+  end
+
+  test "will lose game" do
+    assert Game.lost?(loser_game())
+    refute Game.lost?(ten_move_winner())
+  end
+
+  def ten_move_winner() do
+    Game.new([1,2,3,4])
+    |> Game.guess([4,3,2,1])
+    |> Game.guess([4,3,2,1])
+    |> Game.guess([4,3,2,1])
+    |> Game.guess([4,3,2,1])
+    |> Game.guess([4,3,2,1])
+    |> Game.guess([4,3,2,1])
+    |> Game.guess([4,3,2,1])
+    |> Game.guess([4,3,2,1])
+    |> Game.guess([4,3,2,1])
+    |> Game.guess([1,2,3,4])
+  end
+
+  def loser_game() do
+    Game.new([1,2,3,4])
+    |> Game.guess([4,3,2,1])
+    |> Game.guess([4,3,2,1])
+    |> Game.guess([4,3,2,1])
+    |> Game.guess([4,3,2,1])
+    |> Game.guess([4,3,2,1])
+    |> Game.guess([4,3,2,1])
+    |> Game.guess([4,3,2,1])
+    |> Game.guess([4,3,2,1])
+    |> Game.guess([4,3,2,1])
+    |> Game.guess([4,3,2,1])
   end
 
   def empty_game() do
